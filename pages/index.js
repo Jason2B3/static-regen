@@ -21,11 +21,13 @@ function index(props) {
   );
 }
 export default index;
-
-export async function getStaticProps(){
+// RENDERING CHANGES DYNAMICALLY
+// this function will run on the server after deployment (not during build)
+// This code does not execute client-side
+export async function getServerSideProps(context){
+  console.log(context)
   let responseData= await getFB()
   return { 
   	props: { display: responseData }, 
-  	revalidate: 2 // refresh data every 60 seconds, 
   };
 }
